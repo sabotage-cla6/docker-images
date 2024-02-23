@@ -1,0 +1,4 @@
+alias docker-sound='sudo docker run -u $(id -u):$(id -g) --shm-size=4096m -v /run/user/$(id -u)/pulse/native:/tmp/pulse/native  -v ~/.config/pulse/cookie:/tmp/pulse/cookie:ro -e PULSE_COOKIE=/tmp/pulse/cookie -e PULSE_SERVER=unix:/tmp/pulse/native'
+alias docker-display='docker-sound -v /tmp/.X11-unix/X0:/tmp/.X11-unix/X0 -e DISPLAY'
+alias docker-brave='docker-display ---privileged -rm sabotagecla6/brave'
+alias docker-chrome='docker-display ---privileged -rm sabotagecla6/chrome'
