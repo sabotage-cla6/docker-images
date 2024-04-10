@@ -1,4 +1,4 @@
-FROM sabotagecla6/ubuntu-usr
+FROM sabotagecla6/ubuntu-usr:20.04
 
 # ***********************************************
 # install wine

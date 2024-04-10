@@ -1,4 +1,4 @@
-FROM sabotagecla6/firefox
+FROM sabotagecla6/firefox:20.04
 
 # ***********************************************
 # install packages

@@ -1,4 +1,4 @@
-FROM sabotagecla6/ubuntu
+FROM sabotagecla6/ubuntu:20.04
 
 # ***********************************************
 # setting skelton

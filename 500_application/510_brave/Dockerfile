@@ -1,4 +1,4 @@
-FROM sabotagecla6/ubuntu-gui-jp
+FROM sabotagecla6/ubuntu-gui-jp:20.04
 
 # ***********************************************
 # install packages

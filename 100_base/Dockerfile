@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:20.04
 
 # ***********************************************
 # install packages for xrdp, and do setting
