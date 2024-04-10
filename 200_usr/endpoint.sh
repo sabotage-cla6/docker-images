@@ -39,6 +39,7 @@ if [ -f /usr/bin/create-user.sh ]; then
 	sudo rm -f /etc/sudoers.d/ALL
 fi
 
+ibus-daemon -d -x
 . ~/.bashrc
 
 exec "$@"
