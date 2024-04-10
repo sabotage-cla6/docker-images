@@ -17,6 +17,6 @@ RUN dpkg -i /tmp/google-chrome-stable.deb
 
 
 ENTRYPOINT ["/opt/endpoint.sh" ]
-CMD ["google-chrome"]
+CMD ["google-chrome-stable","--no-sandbox"]
 
 
