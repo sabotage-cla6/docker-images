@@ -15,22 +15,24 @@ RUN mkdir -p /etc/skel/Desktop \
 RUN cp /root/.bashrc /etc/skel/.bashrc && cp /root/.profile /etc/skel/.profile
 
 # ***********************************************
-# setting for create user
+# default user setting
 # ***********************************************
-RUN mkdir -p /etc/sudoers.d
-RUN echo "ALL ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/ALL
-RUN chmod u+s /usr/sbin/useradd && chmod u+s /usr/sbin/usermod && chmod u+s /usr/sbin/groupadd && chmod u+s /usr/sbin/chpasswd 
-RUN chmod u+s /usr/bin/rm
+# you not spcify user info, below paramaeters is used for user setting.
+ENV DEFAULT_USER_ID=1000
+ENV DEFAULT_GROUP_ID=1000
+ENV DEFAULT_USER=ubuntu
+ENV DEFAULT_PASSWD=ubuntu
+ENV DEFAULT_ROOT_PASSWD=ubuntu
 
-ENV DEFAULT_USER=ubuntu \
-    DEFAULT_PASSWD=ubuntu
+# when you create container based on ubuntu-usr, you spcify below parameters
+# ENV USER_ID=1000
+# ENV GROUP_ID=1000
+# ENV PASSWD=1000
+# ENV USER=1000
+# ENV ROOT_PASSWD=1000
+# ENV NO_PASSWD=true
 
-COPY endpoint.sh /opt/
-COPY create-user.sh /usr/bin/
-COPY initilize-user.sh /usr/bin/
-RUN chmod a+xs /opt/endpoint.sh
-
-RUN chmod u+s /opt/endpoint.sh
-
-ENTRYPOINT ["/opt/endpoint.sh"]
-CMD ["/bin/bash"]
+COPY initilize-image.sh /opt/
+COPY create-user.sh /opt/
+RUN chmod a+x /opt/initilize-image.sh
+RUN chmod a+x /opt/create-user.sh

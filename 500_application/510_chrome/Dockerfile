@@ -15,8 +15,6 @@ ADD https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb /t
 
 RUN dpkg -i /tmp/google-chrome-stable.deb
 
-
-ENTRYPOINT ["/opt/endpoint.sh" ]
-CMD ["google-chrome-stable","--no-sandbox"]
+CMD ["google-chrome-stable"]
 
 

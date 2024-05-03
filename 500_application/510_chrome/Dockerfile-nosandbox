@@ -1,0 +1,4 @@
+FROM sabotagecla6/chrome
+RUN sed -i 's/google-chrome-stable/google-chrome-stable --no-sandbox/g' /usr/share/applications/google-chrome.desktop 
+
+CMD ["google-chrome-stable","--no-sandbox"]

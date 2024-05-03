@@ -33,6 +33,4 @@ RUN { \
       echo ''; \
       echo 'BACKSPACE="guess"'; \
     } > /etc/default/keyboard
-
-ENTRYPOINT ["/opt/endpoint.sh"]
-CMD ["/bin/bash"]
+RUN echo "ibus-daemon -d -x" >> /etc/skel/.profile

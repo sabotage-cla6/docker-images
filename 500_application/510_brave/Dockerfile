@@ -12,7 +12,6 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
         brave-browser
 
-ENTRYPOINT ["/opt/endpoint.sh" ]
-CMD ["brave-browser"]
+CMD ["brave-browser", "--no-sandbox" ]
 
 

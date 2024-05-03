@@ -14,5 +14,3 @@ RUN dpkg --add-architecture i386; \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --install-recommends \
         winehq-stable winetricks
 
-ENTRYPOINT ["/opt/endpoint.sh" ]
-CMD ["/bin/bash"]

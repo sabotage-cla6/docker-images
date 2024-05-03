@@ -7,13 +7,3 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
         rustc cargo
 
-# ***********************************************
-# install dotnet
-# ***********************************************
-ADD https://dot.net/v1/dotnet-install.sh /tmp/dotnet-install.sh
-RUN chmod +x /tmp/dotnet-install.sh && \
-    /tmp/dotnet-install.sh --install-dir /usr/lib/dotnet && \
-    ln -s /usr/lib/dotnet/dotnet /usr/bin/dotnet
-
-ENTRYPOINT ["/opt/endpoint.sh"]
-CMD ["/bin/bash"]

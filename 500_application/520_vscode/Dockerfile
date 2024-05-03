@@ -1,4 +1,4 @@
-FROM sabotagecla6/firefox
+FROM sabotagecla6/chrome-nosandbox
 
 # ***********************************************
 # install packages
@@ -14,5 +14,4 @@ ADD https://vscode.download.prss.microsoft.com/dbazure/download/stable/8b3775030
 RUN dpkg -i /tmp/code_amd64.deb
 RUN rm /tmp/code_amd64.deb
 
-ENTRYPOINT ["/opt/endpoint.sh"]
 CMD ["code", "--no-sandbox","-w"]
