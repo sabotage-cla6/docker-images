@@ -1,5 +1,7 @@
 FROM ubuntu
 
+COPY apt /usr/share/bash-completion/completions/apt
+
 # ***********************************************
 # install packages for xrdp, and do setting
 # ***********************************************
@@ -12,17 +14,16 @@ RUN apt-get update && \
 # ***********************************************
 RUN mv /etc/apt/sources.list /etc/apt/sources.list.d/sources.list
 
-# ubuntu docker image clear apt-cache for image based on ubuntu image make smaller. 
-# (/etc/apt/apt.conf.d/docker-clean)
-# `apt-cache --no-generate pkgnames ...` can not work.
-# so, apt-cache remove option "--no-generate"
-RUN sed "s/--no-generate //g" /usr/share/bash-completion/completions/apt >/tmp/apt
-RUN mv /tmp/apt /etc/bash_completion
-
-RUN { \
-        echo "if [ -f /etc/bash_completion ] && ! shopt -oq posix; then"; \
-        echo "    . /etc/bash_completion"; \
-        echo "fi"; \
-    } >> /root/.bashrc
+RUN <<_EOC_
+cat <<- _DOC_ >> /root/.bashrc
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+_DOC_
+_EOC_
 
 CMD ["/bin/bash"]
