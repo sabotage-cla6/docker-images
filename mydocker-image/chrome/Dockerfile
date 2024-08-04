@@ -12,6 +12,7 @@ ENV USER=ubuntu
 ENV ROOT_PASSWD=ubuntu
 ENV NO_PASSWD=true
 
+RUN apt-get update && apt-get upgrade -y
 RUN . /opt/initilize-image.sh
 
-CMD ["google-chrome-stable", "--no-snadbox"] 
+CMD ["google-chrome-stable", "--no-sandbox"] 
