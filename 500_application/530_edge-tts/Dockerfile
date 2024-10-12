@@ -12,10 +12,17 @@ ENV USER=ubuntu
 ENV ROOT_PASSWD=ubuntu
 ENV NO_PASSWD=true
 
-RUN apt-get update && apt-get install -y pipx mpv
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
+        python3-pip pipx mpv
 
-RUN sudo -u ubuntu pipx ensurepath && sudo -u ubuntu pipx install edge-tts && cp /home/ubuntu/.local/bin/edge* /usr/local/bin/
 
-RUN . /opt/initilize-image.sh
+RUN <<EOF
+    source /opt/initilize-image.sh \
+    cd /home/ubuntu/ \
+    sudo -u ubuntu python3 -m venv edge-tts \
+    sudo -u ubuntu source /home/ubuntu/edge-tts/activate \
+    pip install ensurepath edge-tts \
+EOF
 
 CMD ["su", "ubuntu"] 
