@@ -1,4 +1,4 @@
-FROM sabotagecla6/chrome
+FROM sabotagecla6/ubuntu-gui-jp
 
 # ***********************************************
 # install packages
